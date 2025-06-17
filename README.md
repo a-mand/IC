@@ -26,4 +26,4 @@ projects)?
 
 # Documentação
 
- O Projeto Melanoma é uma iniciativa cujo objetivo principal é desenvolver um sistema de classificação automática para a detecção de câncer de pele do tipo melanoma (MEL). Este problema é tratado especificamente como uma classificação binária, onde o sistema deve identificar se uma lesão é melanoma ou não 
+ O Projeto Melanoma é uma iniciativa cujo objetivo principal é desenvolver um sistema de classificação automática para a detecção de câncer de pele do tipo melanoma (MEL). Este problema é tratado especificamente como uma classificação binária, onde o sistema deve identificar se uma lesão é melanoma ou não.
