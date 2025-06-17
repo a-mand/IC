@@ -22,3 +22,8 @@ Algumas perguntas do documento:
 para programação profissional e uso do GIT? A equipe sabe gerar PULL REQUEST no
 github (see https://docs.github.com/en/get-started/quickstart/contributing-to-
 projects)?
+
+
+# Documentação
+
+## O Projeto Melanoma é uma iniciativa cujo objetivo principal é desenvolver um sistema de classificação automática para a detecção de câncer de pele do tipo melanoma (MEL). Este problema é tratado especificamente como uma classificação binária, onde o sistema deve identificar se uma lesão é melanoma ou não 
