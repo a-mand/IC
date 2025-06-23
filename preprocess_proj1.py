@@ -21,7 +21,7 @@ def extract_robust_features(image_path):
         gray = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2GRAY)
         blurred = cv2.GaussianBlur(gray, (7, 7), 0)
 
-        # --- MELHORIA 1: SEGMENTAÇÃO COM LIMIAR ADAPTATIVO ---
+        # --- SEGMENTAÇÃO COM LIMIAR ADAPTATIVO ---
         # Em vez de um limiar global (Otsu), o limiar adaptativo se ajusta a diferentes condições de iluminação.
         thresh = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                                        cv2.THRESH_BINARY_INV, 11, 2)
@@ -45,7 +45,7 @@ def extract_robust_features(image_path):
         else:
             _, (major_axis, _), _ = cv2.fitEllipse(main_contour)
 
-        # --- MELHORIA 2: ADIÇÃO DE CARACTERÍSTICAS DE TEXTURA (GLCM) ---
+        # --- ADIÇÃO DE CARACTERÍSTICAS DE TEXTURA (GLCM) ---
         glcm = graycomatrix(gray, distances=[5], angles=[0], levels=256, symmetric=True, normed=True)
         contrast = graycoprops(glcm, 'contrast')[0, 0]
         dissimilarity = graycoprops(glcm, 'dissimilarity')[0, 0]
