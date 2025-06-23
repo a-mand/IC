@@ -22,7 +22,6 @@ def train_model(X_train, y_train, model_type='rf'):
     """
     print(f"\nTreinando modelo {model_type.upper()} com OTIMIZAÇÃO DE HIPERPARÂMETROS...")
 
-    # --- MUDANÇA APLICADA AQUI ---
     # Expandimos a grade de busca para encontrar uma combinação melhor de parâmetros.
     if model_type == 'rf':
         param_grid = {
