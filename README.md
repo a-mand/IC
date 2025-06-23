@@ -1,29 +1,105 @@
-# IC
+# Projeto de Classificação de Melanoma
 
-Algumas perguntas do documento: 
+## 1. Objetivo
 
-1) Qual o desempenho das duas redes? A equipe deve avaliar se o problema é de dados “desbalanceados”, e buscar o melhor desempenho possível, não olhando apenas para a acurácia.
+Este projeto tem como objetivo desenvolver um sistema de classificação automática em Python para detectar câncer de pele do tipo melanoma (rótulo "MEL"). O problema é tratado como uma classificação binária: é melanoma ou não é melanoma.
 
-2) A equipe aprendeu a usar uma ferramenta para tal tarefa (chamada “model selection”)? 
+## 2. Dataset
 
-3) Qual a metodologia usada? 
+Utilizamos a Task 3 do ISIC Challenge 2018, que consiste em:
+* **Dados de Treino:** 10015 imagens e um arquivo CSV correspondente com os rótulos.
+* **Dados de Validação:** Conjunto de dados para ajuste do limiar de decisão e avaliação do modelo.
+* **Dados de Teste:** 1512 imagens para avaliação final do modelo.
 
-4) Houve algum "data leakage"? 
+## 3. Estrutura do Projeto
 
-5) Usaram bem os exemplos de treino e validação?
+O projeto é dividido em quatro etapas principais, executadas por scripts Python "puros" (não Jupyter Notebooks):
 
-6) Como as simulações foram organizadas?
+* `Pré-processamento`: Extração de características das imagens.
+* `Treino`: Treinamento do modelo, incluindo otimização de hiperparâmetros.
+* `Pós-processamento`: Ajuste do limiar de decisão e geração de gráficos de avaliação.
+* `Teste`: Avaliação final do modelo no conjunto de teste.
 
-7) Cada simulação teve um ID que a permita identificar depois?
+## 4. Instalação do Ambiente
 
-8) Quais arquivos foram guardados?
+Para configurar o ambiente, siga os passos abaixo:
 
-11) Pelo histórico no GitHub, a equipe mostra ter aprendido o básico das ferramentas
-para programação profissional e uso do GIT? A equipe sabe gerar PULL REQUEST no
-github (see https://docs.github.com/en/get-started/quickstart/contributing-to-
-projects)?
+1.  **Clonar o repositório do dataset:**
+    ```bash
+    git clone -b master [https://github.com/a-mand/IC.git](https://github.com/a-mand/IC.git)
+    ```
+    Este comando irá baixar os dados necessários para o projeto na pasta `IC/dataset`.
+
+2.  **Instalar as dependências:**
+    Recomendamos usar `pipreqs` para gerar um arquivo `requirements.txt` minimalista.
+    ```bash
+    pip install pipreqs
+    pipreqs --force . # Execute na raiz do seu projeto para gerar o requirements.txt
+    pip install -r requirements.txt
+    ```
+
+## 5. Partes Principais do Código
+Em ordem de execução do modelo:
+
+1.  **Pré-processamento (Extração de Características):**
+    Este passo extrai características das imagens e as salva em arquivos CSV na pasta `features/`.
 
 
-# Documentação
+2.  **Treinamento do Modelo (Random Forest):**
+    Este comando treina um modelo Random Forest, incluindo a otimização de hiperparâmetros com GridSearchCV e balanceamento de classes com SMOTE. O modelo treinado e o scaler são salvos na pasta `artifacts/`.
 
- O Projeto Melanoma é uma iniciativa cujo objetivo principal é desenvolver um sistema de classificação automática para a detecção de câncer de pele do tipo melanoma (MEL). Este problema é tratado especificamente como uma classificação binária, onde o sistema deve identificar se uma lesão é melanoma ou não.
+
+3.  **Treinamento do Modelo (SVM):**
+    Este comando treina um modelo SVM, seguindo os mesmos passos do Random Forest.
+
+
+4.  **Pós-processamento (Ajuste do Limiar de Decisão para Random Forest):**
+    Este passo ajusta o limiar de decisão para o modelo Random Forest usando o conjunto de validação e gera um gráfico.
+
+    
+
+5.  **Pós-processamento (Ajuste do Limiar de Decisão para SVM):**
+    Este passo ajusta o limiar de decisão para o modelo SVM usando o conjunto de validação e gera um gráfico.
+
+
+6.  **Avaliação na Validação (Random Forest):**
+    Este comando avalia o modelo Random Forest no conjunto de validação com o limiar otimizado, gerando um relatório de classificação e uma matriz de confusão.
+
+7.  **Avaliação na Validação (SVM):**
+    Este comando avalia o modelo SVM no conjunto de validação com o limiar otimizado, gerando um relatório de classificação e uma matriz de confusão.
+
+    
+8.  **Teste Final (Random Forest):**
+    Este comando executa a avaliação final do modelo Random Forest no conjunto de teste.
+
+
+9.  **Teste Final (SVM):**
+    Este comando executa a avaliação final do modelo SVM no conjunto de teste.
+
+
+## 6. Avaliação e Resultados
+
+### Em Falta
+
+
+A equipe buscou o melhor desempenho possível, considerando que o problema pode envolver dados desbalanceados, e não apenas a acurácia. A metodologia de seleção de hiperparâmetros foi realizada de forma automática e os principais achados foram explicados, com atenção para evitar "data leakage".
+
+## 7. Participantes
+
+* [Amanda Lopes] - [202207040043]
+* [Filipe Correa] - [202006840020]
+* [Giovanna Cunha] - [202206840039]
+* [Giovana Nascimento] - [202206840015]
+
+## 8. Referências
+
+Este projeto utiliza os seguintes softwares e bibliotecas:
+* scikit-learn (para classificadores e pré-processamento) 
+* pandas (para manipulação de dados)
+* numpy (para operações numéricas)
+* opencv-python (para processamento de imagens)
+* scikit-image (para extração de características de imagem)
+* matplotlib (para plotagem de gráficos)
+* seaborn (para visualização de dados)
+* imblearn (para lidar com o desbalanceamento de classes, ex: SMOTE)
+* joblib (para salvar e carregar modelos)
