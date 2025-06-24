@@ -91,6 +91,7 @@ Após a etapa de otimização de hiperparâmetros via validação cruzada com Gr
   Melhores parâmetros encontrados:  
   `{'C': 10, 'class_weight': 'balanced', 'gamma': 1, 'kernel': 'rbf'}`  
   Melhor AUC na validação cruzada: **0.9926**
+
 A avaliação em testes foi feita utilizando diferentes limiares de decisão para observar seus impactos nas métricas de desempenho:
 
 **AVALIAÇÃO FINAL do modelo RF - Limiar 0.35**  
