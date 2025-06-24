@@ -82,16 +82,15 @@ Em ordem de execução do modelo:
 A equipe buscou o melhor desempenho possível, considerando que o problema pode envolver dados desbalanceados. Em vez de se basear apenas na acurácia — métrica que pode ser inadequada em cenários com classes desproporcionais — foram utilizadas métricas mais robustas, tais como 'Precision', 'Recall', 'F1-Score', 'MEL' e 'AUC'. A metodologia de seleção de hiperparâmetros foi realizada de forma automática por meio da técnica de GridSearchCV com validação cruzada estratificada (5-fold), o que assegura uma avaliação mais estável e representativa da performance do modelo em diferentes partições dos dados, com atenção para evitar "data leakage". Complementarmente, foi conduzida uma calibração do limiar de decisão do modelo, testando múltiplos valores de threshold com o objetivo de identificar aquele que maximizasse o F1-Score da classe MEL. O melhor limiar encontrado foi então utilizado para avaliar o desempenho final do modelo no conjunto de teste.
 
 Após a etapa de otimização de hiperparâmetros via validação cruzada com GridSearchCV, foram identificadas as seguintes configurações como ideais para cada modelo:
-* Random Forest
-    Melhores parâmetros encontrados:
-    {'class_weight': 'balanced', 'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 300}
-    Melhor AUC na validação cruzada: 0.9848
+**Random Forest**  
+  Melhores parâmetros encontrados:  
+  `{'class_weight': 'balanced', 'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 300}`  
+  Melhor AUC na validação cruzada: **0.9848**
 
-* Support Vector Machine
-    Melhores parâmetros encontrados:
-    {'C': 10, 'class_weight': 'balanced', 'gamma': 1, 'kernel': 'rbf'}
-    Melhor AUC na validação cruzada: 0.9926
-
+**Support Vector Machine**  
+  Melhores parâmetros encontrados:  
+  `{'C': 10, 'class_weight': 'balanced', 'gamma': 1, 'kernel': 'rbf'}`  
+  Melhor AUC na validação cruzada: **0.9926**
 A avaliação em testes foi feita utilizando diferentes limiares de decisão para observar seus impactos nas métricas de desempenho:
 
 **AVALIAÇÃO FINAL do modelo RF - Limiar 0.35**  
