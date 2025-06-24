@@ -34,7 +34,7 @@ Para configurar o ambiente, siga os passos abaixo:
     Recomendamos usar `pipreqs` para gerar um arquivo `requirements.txt` minimalista.
     ```bash
     pip install pipreqs
-    pipreqs --force . # Execute na raiz do seu projeto para gerar o requirements.txt
+    pipreqs --force --encoding=utf-8  . # Execute na raiz do seu projeto para gerar o requirements.txt
     pip install -r requirements.txt
     ```
 
