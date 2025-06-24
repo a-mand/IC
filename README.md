@@ -42,40 +42,60 @@ Para configurar o ambiente, siga os passos abaixo:
 Em ordem de execução do modelo:
 
 1.  **Pré-processamento (Extração de Características):**
-    Este passo extrai características das imagens e as salva em arquivos CSV na pasta `features/`.
-
+    Este passo extrai características das imagens e as salva em arquivos CSV na pasta `features/`. Basta executar o comando abaixo:
+    ``` bash
+    python .\preprocess_proj1.py --input_dir IC/sample_data--output_dir features
+    ```
 
 2.  **Treinamento do Modelo (Random Forest):**
-    Este comando treina um modelo Random Forest, incluindo a otimização de hiperparâmetros com GridSearchCV e balanceamento de classes com SMOTE. O modelo treinado e o scaler são salvos na pasta `artifacts/`.
-
+    Este comando treina um modelo Random Forest, incluindo a otimização de hiperparâmetros com GridSearchCV e balanceamento de classes com SMOTE. O modelo treinado e o scaler são salvos na pasta `artifacts/`. Em model_type, você pode escolher entre "rf" (Random Forest) ou "svm" (SVM). O comando para treinar o modelo Random Forest é:
+    ``` bash
+    python .\train_proj1.py --train_features features/train_features.csv --model_type "rf" --output_dir artifacts
+    ```
 
 3.  **Treinamento do Modelo (SVM):**
     Este comando treina um modelo SVM, seguindo os mesmos passos do Random Forest.
-
+    ``` bash
+    python .\train_proj1.py  --train_features features/train_features.csv --model_type "svm" --output_dir artifacts
+    ```
 
 4.  **Pós-processamento (Ajuste do Limiar de Decisão para Random Forest):**
     Este passo ajusta o limiar de decisão para o modelo Random Forest usando o conjunto de validação e gera um gráfico.
-
+    ``` bash
+    python .\postprocess_proj1.py --val_features features/validation_features.csv --model_path artifacts/rf_model.joblib --scaler_path artifacts/scaler.joblib --output_dir results
+    ```
     
 
 5.  **Pós-processamento (Ajuste do Limiar de Decisão para SVM):**
     Este passo ajusta o limiar de decisão para o modelo SVM usando o conjunto de validação e gera um gráfico.
-
+    ``` bash
+    python postprocess_proj1.py --val_features features/validation_features.csv --model_path artifacts/svm_model.joblib --scaler_path artifacts/scaler.joblib --output_dir results
+    ```
 
 6.  **Avaliação na Validação (Random Forest):**
     Este comando avalia o modelo Random Forest no conjunto de validação com o limiar otimizado, gerando um relatório de classificação e uma matriz de confusão.
+    ``` bash
+    python test_proj1.py --test_features features/validation_features.csv --model_path artifacts/rf_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_validation --threshold 0.35
+    ```
 
 7.  **Avaliação na Validação (SVM):**
     Este comando avalia o modelo SVM no conjunto de validação com o limiar otimizado, gerando um relatório de classificação e uma matriz de confusão.
+    ``` bash
+    python test_proj1.py --test_features features/validation_features.csv --model_path artifacts/svm_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_svm_validation --threshold 0.11
+    ```
 
     
 8.  **Teste Final (Random Forest):**
     Este comando executa a avaliação final do modelo Random Forest no conjunto de teste.
-
+    ``` bash
+    python test_proj1.py --test_features features/test_features.csv --model_path artifacts/rf_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results --threshold 0.35
+    ```
 
 9.  **Teste Final (SVM):**
     Este comando executa a avaliação final do modelo SVM no conjunto de teste.
-
+    ``` bash
+    python test_proj1.py --test_features features/test_features.csv --model_path artifacts/svm_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_svm --threshold 0.11
+    ```
 
 ## 6. Avaliação e Resultados
 
