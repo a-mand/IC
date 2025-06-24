@@ -94,17 +94,17 @@ Após a etapa de otimização de hiperparâmetros via validação cruzada com Gr
 
 A avaliação em testes foi feita utilizando diferentes limiares de decisão para observar seus impactos nas métricas de desempenho:
 
-AVALIAÇÃO FINAL do modelo RF - Limiar 0.35
-    AUC: 0.8548
-    F1-score para MEL: 0.49
-    Recall para MEL: 0.81
-    Precisão para MEL: 0.35
+**AVALIAÇÃO FINAL do modelo RF - Limiar 0.35**  
+AUC: **0.8548**  
+F1-score para MEL: **0.49**  
+Recall para MEL: **0.81**  
+Precisão para MEL: **0.35**
 
-AVALIAÇÃO FINAL do modelo SVM - Limiar 0.11
-    AUC: 0.6885
-    F1-score para MEL: 0.33
-    Recall para MEL: 0.33
-    Precisão para MEL: 0.32
+**AVALIAÇÃO FINAL do modelo SVM - Limiar 0.11**  
+AUC: **0.6885**  
+F1-score para MEL: **0.33**  
+Recall para MEL: **0.33**  
+Precisão para MEL: **0.32**
 
 ## 7. Participantes
 
