@@ -82,7 +82,7 @@ Em ordem de execução do modelo:
 ### Em Falta
 
 
-A equipe buscou o melhor desempenho possível, considerando que o problema pode envolver dados desbalanceados, e não apenas a acurácia. A metodologia de seleção de hiperparâmetros foi realizada de forma automática e os principais achados foram explicados, com atenção para evitar "data leakage".
+A equipe buscou o melhor desempenho possível, considerando que o problema pode envolver dados desbalanceados. Em vez de se basear apenas na acurácia — métrica que pode ser inadequada em cenários com classes desproporcionais — foram utilizadas métricas mais robustas, tais como 'Precision', 'Recall', 'F1-Score', 'MEL' e 'AUC'. A metodologia de seleção de hiperparâmetros foi realizada de forma automática por meio da técnica de GridSearchCV com validação cruzada estratificada (5-fold), o que assegura uma avaliação mais estável e representativa da performance do modelo em diferentes partições dos dados, com atenção para evitar "data leakage".
 
 ## 7. Participantes
 
