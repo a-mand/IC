@@ -26,7 +26,7 @@ Para configurar o ambiente, siga os passos abaixo:
 
 1.  **Clonar o repositório do dataset:**
     ```bash
-    git clone -b main [https://github.com/a-mand/IC.git](https://github.com/a-mand/IC.git)
+    git clone -b master [https://github.com/a-mand/IC.git](https://github.com/a-mand/IC.git)
     ```
     Este comando irá baixar os dados necessários para o projeto na pasta `IC/dataset`.
 
