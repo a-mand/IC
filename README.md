@@ -75,26 +75,26 @@ Em ordem de execução do modelo:
 6.  **Avaliação na Validação (Random Forest):**
     Este comando avalia o modelo Random Forest no conjunto de validação com o limiar otimizado, gerando um relatório de classificação e uma matriz de confusão.
     ``` bash
-    python test_proj1.py --test_features features/validation_features.csv --model_path artifacts/rf_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_validation --threshold 0.35
+    python test_proj1.py --test_features features/validation_features.csv --model_path artifacts/rf_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_validation --threshold 0.45
     ```
 
 7.  **Avaliação na Validação (SVM):**
     Este comando avalia o modelo SVM no conjunto de validação com o limiar otimizado, gerando um relatório de classificação e uma matriz de confusão.
     ``` bash
-    python test_proj1.py --test_features features/validation_features.csv --model_path artifacts/svm_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_svm_validation --threshold 0.11
+    python test_proj1.py --test_features features/validation_features.csv --model_path artifacts/svm_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_svm_validation --threshold 0.28
     ```
 
     
 8.  **Teste Final (Random Forest):**
     Este comando executa a avaliação final do modelo Random Forest no conjunto de teste.
     ``` bash
-    python test_proj1.py --test_features features/test_features.csv --model_path artifacts/rf_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results --threshold 0.35
+    python test_proj1.py --test_features features/test_features.csv --model_path artifacts/rf_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results --threshold 0.45
     ```
 
 9.  **Teste Final (SVM):**
     Este comando executa a avaliação final do modelo SVM no conjunto de teste.
     ``` bash
-    python test_proj1.py --test_features features/test_features.csv --model_path artifacts/svm_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_svm --threshold 0.11
+    python test_proj1.py --test_features features/test_features.csv --model_path artifacts/svm_model.joblib --scaler_path artifacts/scaler.joblib --results_dir results_svm --threshold 0.28
     ```
 
 ## 6. Avaliação e Resultados
@@ -104,24 +104,25 @@ A equipe buscou o melhor desempenho possível, considerando que o problema pode 
 Após a etapa de otimização de hiperparâmetros via validação cruzada com GridSearchCV, foram identificadas as seguintes configurações como ideais para cada modelo:
 **Random Forest**  
   Melhores parâmetros encontrados:  
-  `{'class_weight': 'balanced', 'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 300}`  
-  Melhor AUC na validação cruzada: **0.9848**
+  `{'class_weight': 'balanced', 'max_depth': 20, 'min_samples_leaf': 5, 'min_samples_split': 5, 'n_estimators': 200}`  
+  Melhor AUC na validação cruzada: **0.9706**
 
 **Support Vector Machine**  
   Melhores parâmetros encontrados:  
-  `{'C': 10, 'class_weight': 'balanced', 'gamma': 1, 'kernel': 'rbf'}`  
-  Melhor AUC na validação cruzada: **0.9926**
+  `{'C': 10, 'class_weight': 'balanced', 'gamma': 0.1, 'kernel': 'rbf'}`  
+  Melhor AUC na validação cruzada: **0.9717**
 
 A avaliação em testes foi feita utilizando diferentes limiares de decisão para observar seus impactos nas métricas de desempenho:
 
 **AVALIAÇÃO FINAL do modelo RF - Limiar 0.35**  
-AUC: **0.8548**  
-F1-score para MEL: **0.49**  
-Recall para MEL: **0.81**  
-Precisão para MEL: **0.35**
+AUC: **0.8599**  
+F1-score para MEL: **0.47**  
+Recall para MEL: **0.67**  
+Precisão para MEL: **0.36**
+Accuracy: **0.83**   
 
-**AVALIAÇÃO FINAL do modelo SVM - Limiar 0.11**  
-AUC: **0.6885**  
+**AVALIAÇÃO FINAL do modelo SVM - Limiar 0.28**  
+AUC: **0.7560**  
 F1-score para MEL: **0.33**  
 Recall para MEL: **0.33**  
 Precisão para MEL: **0.32**
