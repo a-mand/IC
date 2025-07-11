@@ -1,3 +1,4 @@
+%%writefile test_proj1.py
 
 import argparse
 import joblib
@@ -16,14 +17,14 @@ def load_features(csv_path):
 
 def evaluate_model(model, X_test, y_test, scaler, results_dir, threshold=0.5):
     """Avalia o modelo usando um limiar de decisão específico."""
-    print(f"\nAvaliando modelo no conjunto de teste com limiar = {threshold:.2f}...")
+    print(f"\nAvaliando modelo no conjunto de teste com limiar = {threshold:.4f}...")
     X_test_scaled = scaler.transform(X_test)
 
     # Usa o limiar para fazer as predições
     y_proba = model.predict_proba(X_test_scaled)[:, 1]
     y_pred = (y_proba >= threshold).astype(int)
 
-    report = classification_report(y_test, y_pred, target_names=['Não-MEL', 'MEL'])
+    report = classification_report(y_test, y_pred, target_names=['Não-MEL', 'MEL'], digits=4)
     auc_score = roc_auc_score(y_test, y_proba)
 
     print(f"AUC Score: {auc_score:.4f}")
@@ -33,7 +34,7 @@ def evaluate_model(model, X_test, y_test, scaler, results_dir, threshold=0.5):
 
     # Salva relatório
     with open(os.path.join(results_dir, 'test_report.txt'), 'w') as f:
-        f.write(f"Limiar de Decisão Usado: {threshold:.2f}\n")
+        f.write(f"Limiar de Decisão Usado: {threshold:.4f}\n")
         f.write(f"AUC Score: {auc_score:.4f}\n\n")
         f.write(report)
 
@@ -41,7 +42,7 @@ def evaluate_model(model, X_test, y_test, scaler, results_dir, threshold=0.5):
     cm = confusion_matrix(y_test, y_pred)
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Não-MEL', 'MEL'], yticklabels=['Não-MEL', 'MEL'])
-    plt.title(f'Matriz de Confusão (Teste, Limiar={threshold:.2f})')
+    plt.title(f'Matriz de Confusão (Teste, Limiar={threshold:.4f})')
     plt.savefig(os.path.join(results_dir, 'test_confusion_matrix.png'))
     plt.close()
 
