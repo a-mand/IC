@@ -118,14 +118,15 @@ A avaliação em testes foi feita utilizando diferentes limiares de decisão par
 AUC: **0.8599**  
 F1-score para MEL: **0.47**  
 Recall para MEL: **0.67**  
-Precisão para MEL: **0.36**
-Accuracy: **0.83**   
+Precisão para MEL: **0.36**  
+Accuracy: **0.83**  
 
 **AVALIAÇÃO FINAL do modelo SVM - Limiar 0.28**  
 AUC: **0.7560**  
 F1-score para MEL: **0.33**  
 Recall para MEL: **0.33**  
-Precisão para MEL: **0.32**
+Precisão para MEL: **0.32**  
+Accuracy: **0.83**  
 
 ## 7. Participantes
 
