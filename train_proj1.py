@@ -1,3 +1,4 @@
+%%writefile train_proj1.py
 
 import argparse
 import joblib
@@ -8,6 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from imblearn.over_sampling import SMOTE
 import os
+from sklearn.metrics import accuracy_score
 
 def load_features(csv_path):
     """Carrega características e rótulos de um arquivo CSV."""
@@ -22,20 +24,19 @@ def train_model(X_train, y_train, model_type='rf'):
     """
     print(f"\nTreinando modelo {model_type.upper()} com OTIMIZAÇÃO DE HIPERPARÂMETROS...")
 
-    # Expandimos a grade de busca para encontrar uma combinação melhor de parâmetros.
     if model_type == 'rf':
         param_grid = {
-            'n_estimators': [100, 200, 300],
-            'max_depth': [10, 20, 30, None],
-            'min_samples_split': [2, 5, 10],
-            'min_samples_leaf': [1, 2, 4],
+            'n_estimators': [100, 200],
+            'max_depth': [5, 10, 15, 20], 
+            'min_samples_split': [5, 10, 15],
+            'min_samples_leaf': [5, 10, 20], 
             'class_weight': ['balanced']
         }
         model = RandomForestClassifier(random_state=42)
     elif model_type == 'svm':
         param_grid = {
-            'C': [0.1, 1, 10, 100],
-            'gamma': [1, 0.1, 0.01, 0.001],
+            'C': [0.1, 1, 10],
+            'gamma': [0.1, 0.01, 0.001, 'scale'],
             'kernel': ['rbf'],
             'class_weight': ['balanced']
         }
@@ -68,6 +69,11 @@ if __name__ == "__main__":
     X_train_scaled = scaler.fit_transform(X_train_res)
 
     model = train_model(X_train_scaled, y_train_res, model_type=args.model_type)
+
+    print("\n--- Verificando Acurácia no Conjunto de Treino ---")
+    y_train_pred = model.predict(X_train_scaled)
+    train_accuracy = accuracy_score(y_train_res, y_train_pred)
+    print(f"Acurácia no conjunto de treino: {train_accuracy:.4f} (ou {train_accuracy:.2%})")
 
     os.makedirs(args.output_dir, exist_ok=True)
     joblib.dump(model, os.path.join(args.output_dir, f'{args.model_type}_model.joblib'))
