@@ -1,0 +1,11 @@
+Limiar de Decisão Usado: 0.11
+AUC Score: 0.7027
+
+              precision    recall  f1-score   support
+
+     Não-MEL       0.91      0.84      0.88      1341
+         MEL       0.23      0.37      0.28       171
+
+    accuracy                           0.79      1512
+   macro avg       0.57      0.60      0.58      1512
+weighted avg       0.84      0.79      0.81      1512
